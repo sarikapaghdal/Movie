@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  Movies
 //
-//  Created by Dhaval s on 19/01/19.
-//  Copyright © 2019 Dhaval s. All rights reserved.
+//  Created by Sarika on 19/01/19.
+//  Copyright © 2019 Sarika. All rights reserved.
 //
 
 import UIKit
@@ -13,10 +13,10 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    private var coreData = CoreDataStack()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        checkData()
         return true
     }
 
@@ -41,53 +41,63 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         // Saves changes in the application's managed object context before the application terminates.
-        self.saveContext()
+        coreData.saveContext()
     }
-
-    // MARK: - Core Data stack
-
-    lazy var persistentContainer: NSPersistentContainer = {
-        /*
-         The persistent container for the application. This implementation
-         creates and returns a container, having loaded the store for the
-         application to it. This property is optional since there are legitimate
-         error conditions that could cause the creation of the store to fail.
-        */
-        let container = NSPersistentContainer(name: "Movies")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
-            if let error = error as NSError? {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                 
-                /*
-                 Typical reasons for an error here include:
-                 * The parent directory does not exist, cannot be created, or disallows writing.
-                 * The persistent store is not accessible, due to permissions or data protection when the device is locked.
-                 * The device is out of space.
-                 * The store could not be migrated to the current model version.
-                 Check the error message to determine what the actual problem was.
-                 */
-                fatalError("Unresolved error \(error), \(error.userInfo)")
-            }
-        })
-        return container
-    }()
-
-    // MARK: - Core Data Saving support
-
-    func saveContext () {
-        let context = persistentContainer.viewContext
-        if context.hasChanges {
-            do {
-                try context.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nserror = error as NSError
-                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
-            }
+    
+    private func checkData(){
+        let context = coreData.persistentContainer.viewContext
+        let request : NSFetchRequest<Movie> = Movie.fetchRequest()
+        
+        if let movieCount = try? context.count(for: request), movieCount > 0 {
+            return
         }
+        uploadSampleData()
     }
-
+    
+    private func uploadSampleData(){
+        let context = coreData.persistentContainer.viewContext
+        /**
+         we are checking if movie.json exist or not.
+         if it exist then we transform result of the URL into Data and after that into JSON array.
+         */
+        guard
+            /**
+             fetching data from our json file
+             */
+            let url = Bundle.main.url(forResource:"movie", withExtension: "json"),
+            //convert result into Data
+            let data = try? Data(contentsOf: url), //once we have data then serialize it into dictionary
+            let jsonResult = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? NSDictionary, //once we have dictionary , we convert it onto Json array
+            let jsonArray = jsonResult?.value(forKey: "movie") as? NSArray
+        
+        else {return}
+        
+        /**
+         Now iterating through fetcheddata from our json file and saving that data into our datamodel's enity = Movie
+         */
+        for json in jsonArray {
+        
+            print(json)
+            guard
+                let movieData = json as? [String : AnyObject],
+                let title = movieData["name"] as? String,
+                let userRating = movieData["rating"],
+                let format = movieData["format"] as? String
+            else{return}
+            
+            let moovie = Movie(context: context)
+            moovie.title = title
+            moovie.userRating = userRating.int16Value
+            moovie.format = format
+            
+            if let imageName = movieData["image"] as? String,
+                //converting string of image name into original image
+                let image = UIImage(named: imageName),
+                let imageData = image.jpegData(compressionQuality: 1.0)
+                {
+                    moovie.image = NSData.init(data: imageData)
+                }
+        }
+        coreData.saveContext()
+    }
 }
-

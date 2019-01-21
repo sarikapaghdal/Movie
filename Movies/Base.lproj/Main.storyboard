@@ -1,24 +1,118 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="jVH-gY-3T5">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--My Moovies-->
+        <scene sceneID="AZC-wy-X0b">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <tableViewController id="hi0-Qp-R7S" customClass="MoovieTableViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="3iE-Rq-oY5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="movieCell" rowHeight="80" id="02l-0Q-M8l" customClass="MoovieTableViewCell" customModule="Movies" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="80"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="02l-0Q-M8l" id="rIl-Sb-ZYo">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="79.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="jurassic.png" translatesAutoresizingMaskIntoConstraints="NO" id="BnF-dq-JHn" userLabel="Moovie Image View">
+                                            <rect key="frame" x="8" y="5" width="60" height="69.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="zbb-Oj-aff"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yNU-fc-V3C" userLabel="Moovie title label">
+                                            <rect key="frame" x="76" y="5" width="291" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qys-2j-mKG" userLabel="Moovie formate label">
+                                            <rect key="frame" x="309" y="34" width="42" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sWO-xg-4Je" userLabel="User rating" customClass="UserRating" customModule="Movies" customModuleProvider="target">
+                                            <rect key="frame" x="76" y="34" width="130" height="20"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="1Dq-jb-oTT"/>
+                                                <constraint firstAttribute="width" constant="130" id="aLO-hb-U0a"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="sWO-xg-4Je" secondAttribute="bottom" constant="15" id="01V-N9-QaJ"/>
+                                        <constraint firstItem="Qys-2j-mKG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sWO-xg-4Je" secondAttribute="trailing" constant="8" symbolic="YES" id="8s6-Pj-kso"/>
+                                        <constraint firstItem="BnF-dq-JHn" firstAttribute="leading" secondItem="rIl-Sb-ZYo" secondAttribute="leading" constant="8" id="A0a-LL-avO"/>
+                                        <constraint firstAttribute="bottom" secondItem="BnF-dq-JHn" secondAttribute="bottom" constant="5" id="FXv-em-NQ7"/>
+                                        <constraint firstItem="yNU-fc-V3C" firstAttribute="leading" secondItem="BnF-dq-JHn" secondAttribute="trailing" constant="8" id="RgK-ud-szd"/>
+                                        <constraint firstItem="BnF-dq-JHn" firstAttribute="top" secondItem="yNU-fc-V3C" secondAttribute="top" id="S5H-Uh-bW1"/>
+                                        <constraint firstItem="BnF-dq-JHn" firstAttribute="centerY" secondItem="rIl-Sb-ZYo" secondAttribute="centerY" id="SOs-M0-Odb"/>
+                                        <constraint firstItem="Qys-2j-mKG" firstAttribute="centerY" secondItem="sWO-xg-4Je" secondAttribute="centerY" id="SnT-8m-dAB"/>
+                                        <constraint firstAttribute="trailing" secondItem="yNU-fc-V3C" secondAttribute="trailing" constant="8" id="ZeC-fU-jZo"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Qys-2j-mKG" secondAttribute="trailing" constant="8" id="kJK-En-dE0"/>
+                                        <constraint firstItem="BnF-dq-JHn" firstAttribute="top" secondItem="rIl-Sb-ZYo" secondAttribute="top" constant="5" id="nEd-hB-xcj"/>
+                                        <constraint firstItem="sWO-xg-4Je" firstAttribute="leading" secondItem="BnF-dq-JHn" secondAttribute="trailing" constant="8" id="txf-ZI-BSw"/>
+                                        <constraint firstItem="sWO-xg-4Je" firstAttribute="leading" secondItem="yNU-fc-V3C" secondAttribute="leading" id="wh0-qC-c3V"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="moovieFormatLabel" destination="Qys-2j-mKG" id="LEG-vV-zWL"/>
+                                    <outlet property="moovieImageView" destination="BnF-dq-JHn" id="aX2-8W-e0d"/>
+                                    <outlet property="moovieTitleLabel" destination="yNU-fc-V3C" id="JVR-Vh-6EO"/>
+                                    <outlet property="userRatingView" destination="sWO-xg-4Je" id="Se9-rI-3HL"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hi0-Qp-R7S" id="geJ-23-7Xq"/>
+                            <outlet property="delegate" destination="hi0-Qp-R7S" id="Oau-m8-RzE"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="My Moovies" id="3vE-4X-WCD">
+                        <barButtonItem key="rightBarButtonItem" title="Reset Rating" id="HvN-bL-e1c">
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <connections>
+                                <action selector="resetRatingTapped:" destination="hi0-Qp-R7S" id="h2M-Dj-Xk8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qKz-3g-vmx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="839.20000000000005" y="85.907046476761622"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Gxk-Bp-SDs">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="jVH-gY-3T5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WmE-nJ-48z">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hi0-Qp-R7S" kind="relationship" relationship="rootViewController" id="sGk-pt-Nkw"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="o6g-9s-k7E" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="116" y="93.103448275862078"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="jurassic.png" width="65" height="81"/>
+    </resources>
 </document>

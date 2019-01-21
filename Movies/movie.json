@@ -1,0 +1,73 @@
+{
+    "movie": [{
+        "name": "Star Wars Collection",
+        "rating": 5,
+        "image": "starwars.png",
+        "format": "Blu-ray"
+    }, {
+        "name": "X-Men Collection",
+        "rating": 5,
+        "image": "xmen.png",
+        "format": "Blu-ray"
+    }, {
+        "name": "Harry Potter 1-8",
+        "rating": 5,
+        "image": "harrypotter.png",
+        "format": "Blu-ray"
+    }, {
+        "name": "Batman Collection",
+        "rating": 1,
+        "image": "batman.png",
+        "format": "DVD"
+    }, {
+        "name": "Transformer",
+        "rating": 3,
+        "image": "transformer.png",
+        "format": "Blu-ray"
+    }, {
+        "name": "Ultimate Pixar",
+        "rating": 4,
+        "image": "ultimatepixar.png",
+        "format": "DVD"
+    }, {
+        "name": "Disney Pixar",
+        "rating": 0,
+        "image": "pixar.png",
+        "format": "DVD"
+    }, {
+        "name": "Pirates of Carribean",
+        "rating": 5,
+        "image": "pirates.png",
+        "format": "Blu-ray"
+    }, {
+        "name": "Lord of the Rings",
+        "rating": 4,
+        "image": "lordoftherings.png",
+        "format": "Blu-ray"
+    }, {
+        "name": "Jurassic World",
+        "rating": 4,
+        "image": "jurassic.png",
+        "format": "Blu-ray"
+    }, {
+        "name": "Madmax",
+        "rating": 3,
+        "image": "madmax.png",
+        "format": "Blu-ray"
+    }, {
+        "name": "Terminator Genesys",
+        "rating": 4,
+        "image": "terminator.png",
+        "format": "DVD"
+    }, {
+        "name": "Ted 2",
+        "rating": 3,
+        "image": "ted2.png",
+        "format": "Blu-ray"
+    }, {
+        "name": "Star Trek",
+        "rating": 4,
+        "image": "startrek.png",
+        "format": "DVD"
+    }]
+}
